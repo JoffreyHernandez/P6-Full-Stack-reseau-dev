@@ -32,18 +32,11 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String name;
 
     @Column(length = 2000)
     private String description;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "FEEDS",
-            joinColumns = @JoinColumn( name = "topic_id" ),
-            inverseJoinColumns = @JoinColumn( name = "post_id" ) )
-    private List<Post> posts;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

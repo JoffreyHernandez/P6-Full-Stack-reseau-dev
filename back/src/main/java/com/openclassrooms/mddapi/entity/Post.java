@@ -19,7 +19,6 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Post {
 
     @Id
@@ -32,7 +31,15 @@ public class Post {
     @Column(length = 2000)
     private String content;
 
-    @OneToMany(mappedBy = "id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "topic_id", referencedColumnName = "id")
+    private Topic topic;
+
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private Set<Comment> comments;
 
     @CreatedDate

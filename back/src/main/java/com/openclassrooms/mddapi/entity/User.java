@@ -26,10 +26,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 40)
+    @Column(length = 40, unique = true)
     private String username;
 
-    @Column(length = 40)
+    @Column(length = 40, unique = true)
     private String email;
 
     @Column

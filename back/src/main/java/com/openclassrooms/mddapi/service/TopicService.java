@@ -35,4 +35,8 @@ public class TopicService {
         topic.setId(id);
         return this.topicRepository.save(topic);
     }
+
+    public boolean existsByName(String name) {
+        return this.topicRepository.existsByName(name);
+    }
 }
