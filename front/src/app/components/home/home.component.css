@@ -1,0 +1,10 @@
+button {
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.posts {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

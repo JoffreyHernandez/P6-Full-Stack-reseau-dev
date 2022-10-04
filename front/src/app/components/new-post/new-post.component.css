@@ -1,0 +1,8 @@
+.field:last-child {
+    height: unset;
+    margin-top: 13px;
+}
+
+.field:last-child label {
+    align-self: start;
+}

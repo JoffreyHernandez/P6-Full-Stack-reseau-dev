@@ -1,0 +1,51 @@
+.profil {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.info {
+    margin-top: 100px;
+    display: flex;
+    width: 400px;
+    flex-wrap: wrap;
+}
+
+p {
+    min-width: 200px;
+}
+
+hr {
+    width: min(100vw - 20rem);
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.subscriptions p {
+    font-size: 18px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 500px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+input + button {
+    margin-left: 20px;
+}
+
+button {
+    height: 35px;
+    background-color: lightgrey;
+    cursor: pointer;
+}

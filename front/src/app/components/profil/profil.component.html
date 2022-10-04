@@ -1,0 +1,54 @@
+<div class="profil">
+  <app-header></app-header>
+  <div class="container">
+    <div class="info" *ngIf="!update">
+      <p>Username</p>
+      <p>My Username</p>
+      <p>Email</p>
+      <p>test@test.com</p>
+    </div>
+    <div class="form" *ngIf="update">
+      <div class="field">
+        <label>Username</label>
+        <input type="text"/>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email"/>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password"/>
+      </div>
+    </div>
+    <div class="action">
+      <button (click)="update = !update">
+        <span *ngIf="!update">Edit</span>
+        <span *ngIf="update">Update</span>
+      </button>
+    </div>
+    <hr *ngIf="!update"/>
+    <div class="subscriptions" *ngIf="!update">
+      <p>Subscriptions</p>
+      <div class="list-subscriptions">
+
+        <ul>
+          <li>
+            <input placeholder="Topic 1"/>
+            <button>Unsubscribre</button>
+          </li>
+          <li>
+            <input placeholder="Topic 1"/>
+            <button>Unsubscribre</button>
+          </li>
+          <li>
+            <input placeholder="Topic 1"/>
+            <button>Unsubscribre</button>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+  </div>
+</div>

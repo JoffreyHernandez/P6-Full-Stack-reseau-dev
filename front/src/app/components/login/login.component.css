@@ -1,0 +1,14 @@
+.actions {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.actions > button + button {
+  margin-left: 30px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}

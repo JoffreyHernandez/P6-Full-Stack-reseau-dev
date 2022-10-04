@@ -1,0 +1,38 @@
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    margin-right: 20px;
+    display: flex;
+    list-style: none;
+    color: black;
+}
+
+li + li {
+    margin-left: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.avatar {
+    border-radius: 40px;
+    cursor: pointer;
+    margin-left: 10px;
+}
