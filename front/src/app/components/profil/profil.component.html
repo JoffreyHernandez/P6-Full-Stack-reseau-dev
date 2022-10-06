@@ -1,53 +1,43 @@
 <div class="profil">
   <app-header></app-header>
   <div class="container">
-    <div class="info" *ngIf="!update">
+    <div class="info" *ngIf="!update && user">
       <p>Username</p>
-      <p>My Username</p>
+      <p>{{ user.username}}</p>
       <p>Email</p>
-      <p>test@test.com</p>
+      <p>{{ user.email}}</p>
     </div>
-    <div class="form" *ngIf="update">
+    <form class="form" *ngIf="update && form" [formGroup]="form" (ngSubmit)="updateUser()">
       <div class="field">
         <label>Username</label>
-        <input type="text"/>
+        <input type="text" formControlName="username"/>
       </div>
       <div class="field">
         <label>Email</label>
-        <input type="email"/>
+        <input type="email" formControlName="email"/>
       </div>
       <div class="field">
         <label>Password</label>
-        <input type="password"/>
+        <input type="password" formControlName="password"/>
       </div>
-    </div>
-    <div class="action">
-      <button (click)="update = !update">
-        <span *ngIf="!update">Edit</span>
-        <span *ngIf="update">Update</span>
-      </button>
+      <div class="update-action">
+        <button type="submit" [disabled]="form.invalid">Update</button>
+      </div>
+    </form>
+    <div class="actions" *ngIf="!update">
+      <button (click)="goUpdate()">Edit</button>
+      <button (click)="logout()">Logout</button>
     </div>
     <hr *ngIf="!update"/>
-    <div class="subscriptions" *ngIf="!update">
+    <div class="subscriptions" *ngIf="!update && user && user.topics && user.topics.length > 0">
       <p>Subscriptions</p>
       <div class="list-subscriptions">
-
         <ul>
-          <li>
-            <input placeholder="Topic 1"/>
-            <button>Unsubscribre</button>
-          </li>
-          <li>
-            <input placeholder="Topic 1"/>
-            <button>Unsubscribre</button>
-          </li>
-          <li>
-            <input placeholder="Topic 1"/>
-            <button>Unsubscribre</button>
+          <li *ngFor="let topic of user.topics">
+            <input disabled [value]="topic.name"/>
+            <button (click)="unfollow(topic.id)">Unsubscribre</button>
           </li>
         </ul>
-
-
       </div>
     </div>
   </div>

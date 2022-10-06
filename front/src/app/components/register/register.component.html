@@ -1,22 +1,23 @@
 <div class="register">
   <app-header></app-header>
   <div class="container">
-    <div class="form">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="field">
         <label>Username</label>
-        <input type="text"/>
+        <input type="text" placeholder="Username" formControlName="username"/>
       </div>
       <div class="field">
         <label>Email</label>
-        <input type="email"/>
+        <input type="email" placeholder="Email" formControlName="email"/>
       </div>
       <div class="field">
         <label>Password</label>
-        <input type="password"/>
+        <input type="password" placeholder="Password" formControlName="password"/>
       </div>
       <div class="action">
-        <button>Register</button>
+        <button type="submit" [disabled]="form.invalid">Register</button>
       </div>
-    </div>
+      <span *ngIf="onError" class="error">An error occurred</span>
+    </form>
   </div>
 </div>

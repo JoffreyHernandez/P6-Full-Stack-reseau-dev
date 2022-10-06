@@ -1,13 +1,13 @@
 <div class="post">
-  <div class="header" (click)="open = !open;">
-    <div class="title">Titre</div>
-    <div class="date">Date</div>
-  </div>
-  <hr *ngIf="open"/>
-  <div class="content" *ngIf="open">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <div *ngIf="post" (click)="open = !open;">
+    <div class="header">
+      <div class="title">{{post.title}}</div>
+      <div class="date">{{post.createdAt | date: 'longDate'}}</div>
+    </div>
+    <hr *ngIf="open"/>
+    <div>
+      <div class="content" *ngIf="open">{{post.content}}</div>
+      <button class="detail" *ngIf="open" [routerLink]="['/post', post.id]">Detail</button>
+    </div>
   </div>
 </div>

@@ -5,6 +5,6 @@
       <li><a routerLink="/home">Home</a></li>
       <li><a routerLink="/topic">Topics</a></li>
     </ul>
-    <img routerLink="/profil" class="avatar" src="https://via.placeholder.com/40x40" alt="avatar"/>
+    <img  *ngIf="(isOnAuthPage$ | async) != true" routerLink="/profil" class="avatar" src="https://via.placeholder.com/40x40" alt="avatar"/>
   </div>
 </div>

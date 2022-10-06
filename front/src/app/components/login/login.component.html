@@ -1,19 +1,19 @@
 <div class="login">
   <app-header></app-header>
   <div class="container">
-    <div class="form">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="field">
         <label>Email</label>
-        <input type="email"/>
+        <input type="email" placeholder="Email" formControlName="email"/>
       </div>
       <div class="field">
         <label>Password</label>
-        <input type="password"/>
+        <input type="password" placeholder="Password" formControlName="password"/>
       </div>
       <div class="actions">
-        <button routerLink="/home">Sign In</button>
+        <button type="submit" [disabled]="form.invalid">Sign In</button>
         <button routerLink="/register">Sign Up</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>

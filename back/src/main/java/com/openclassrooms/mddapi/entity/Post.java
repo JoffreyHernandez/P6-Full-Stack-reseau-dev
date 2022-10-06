@@ -39,7 +39,7 @@ public class Post {
     @JoinColumn(name = "topic_id", referencedColumnName = "id")
     private Topic topic;
 
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id")
     private Set<Comment> comments;
 
     @CreatedDate

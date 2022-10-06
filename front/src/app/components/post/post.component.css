@@ -5,14 +5,20 @@
     min-width: 500px;
     padding: 20px;
     max-width: 500px;
+    cursor: pointer;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
 }
 
 hr {
     margin: 10px 0;
+}
+
+.detail {
+    display: flex;
+    margin-top: 10px;
+    margin-inline: auto;
 }

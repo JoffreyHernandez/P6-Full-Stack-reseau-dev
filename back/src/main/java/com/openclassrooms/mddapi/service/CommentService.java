@@ -9,7 +9,6 @@ import java.util.List;
 @Service
 public class CommentService {
 
-
     private final CommentRepository commentRepository;
 
     CommentService(CommentRepository commentRepository) {
@@ -20,20 +19,7 @@ public class CommentService {
         return this.commentRepository.save(comment);
     }
 
-    public void delete(Long id) {
-        this.commentRepository.deleteById(id);
-    }
-
-    public List<Comment> findAll() {
-        return this.commentRepository.findAll();
-    }
-
-    public Comment getById(Long id) {
-        return this.commentRepository.findById(id).orElse(null);
-    }
-
-    public Comment update(Long id, Comment comment) {
-        comment.setId(id);
-        return this.commentRepository.save(comment);
+    public List<Comment> getByPost_id(Long postId) {
+        return this.commentRepository.findByPost_id(postId);
     }
 }

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -23,8 +22,6 @@ public class PostDto {
     private Long user_id;
 
     private Long topic_id;
-
-    private Set<CommentDto> comments;
 
     private LocalDateTime createdAt;
 

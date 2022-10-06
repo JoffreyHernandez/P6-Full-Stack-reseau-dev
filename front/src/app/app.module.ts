@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,8 +13,13 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { PostComponent } from './components/post/post.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
 import { ProfilComponent } from './components/profil/profil.component';
-import {AppRoutingModule} from "./app-routing.module";
+import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import localeFr from '@angular/common/locales/fr';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -24,13 +32,23 @@ import { HeaderComponent } from './components/header/header.component';
     PostComponent,
     NewPostComponent,
     ProfilComponent,
-    HeaderComponent
+    HeaderComponent,
+    PostDetailComponent
   ],
   imports: [
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: LOCALE_ID,
+      useValue: 'fr-FR'
+    },
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

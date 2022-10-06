@@ -8,12 +8,12 @@
 .info {
     margin-top: 100px;
     display: flex;
-    width: 400px;
+    width: 600px;
     flex-wrap: wrap;
 }
 
 p {
-    min-width: 200px;
+    min-width: 300px;
 }
 
 hr {
@@ -48,4 +48,13 @@ button {
     height: 35px;
     background-color: lightgrey;
     cursor: pointer;
+}
+
+button + button {
+    margin-left: 10px;
+}
+
+.update-action {
+    display: flex;
+    justify-content: center;
 }

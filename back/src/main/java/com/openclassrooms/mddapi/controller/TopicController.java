@@ -2,7 +2,9 @@ package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.TopicDto;
 import com.openclassrooms.mddapi.entity.Topic;
+import com.openclassrooms.mddapi.entity.User;
 import com.openclassrooms.mddapi.mapper.TopicMapper;
+import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.payload.response.MessageResponse;
 import com.openclassrooms.mddapi.service.TopicService;
 import lombok.extern.log4j.Log4j2;
@@ -19,12 +21,15 @@ public class TopicController {
 
     private final TopicMapper topicMapper;
     private final TopicService topicService;
+    private final UserMapper userMapper;
 
 
     public TopicController(TopicService topicService,
-                           TopicMapper topicMapper) {
+                           TopicMapper topicMapper,
+                           UserMapper userMapper) {
         this.topicMapper = topicMapper;
         this.topicService = topicService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping("/{id}")
@@ -62,12 +67,23 @@ public class TopicController {
         return ResponseEntity.ok().body(this.topicMapper.toDto(topic));
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody TopicDto topicDto) {
+    @PutMapping("{id}/follow/{userId}")
+    public ResponseEntity<?> follow(@PathVariable("id") String id, @PathVariable("userId") String userId) {
         try {
-            Topic topic = this.topicService.update(Long.parseLong(id), this.topicMapper.toEntity(topicDto));
+            User user = this.topicService.follow(Long.parseLong(id), Long.parseLong(userId));
 
-            return ResponseEntity.ok().body(this.topicMapper.toDto(topic));
+            return ResponseEntity.ok().body(this.userMapper.toDto(user));
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("{id}/unfollow/{userId}")
+    public ResponseEntity<?> unfollow(@PathVariable("id") String id, @PathVariable("userId") String userId) {
+        try {
+            User user = this.topicService.unfollow(Long.parseLong(id), Long.parseLong(userId));
+
+            return ResponseEntity.ok().body(this.userMapper.toDto(user));
         } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
         }

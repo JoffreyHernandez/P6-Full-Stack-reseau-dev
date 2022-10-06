@@ -25,10 +25,10 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") String id) {
+    @GetMapping("post/{postId}")
+    public ResponseEntity<?> findByPostId(@PathVariable("postId") String postId) {
         try {
-            Comment comment = this.commentService.getById(Long.valueOf(id));
+            List<Comment> comment = this.commentService.getByPost_id(Long.valueOf(postId));
 
             if (comment == null) {
                 return ResponseEntity.notFound().build();
@@ -38,13 +38,6 @@ public class CommentController {
         } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
         }
-    }
-
-    @GetMapping()
-    public ResponseEntity<?> findAll() {
-        List<Comment> comments = this.commentService.findAll();
-
-        return ResponseEntity.ok().body(this.commentMapper.toDto(comments));
     }
 
     @PostMapping()
@@ -53,32 +46,5 @@ public class CommentController {
         Comment comment = this.commentService.create(this.commentMapper.toEntity(commentDto));
 
         return ResponseEntity.ok().body(this.commentMapper.toDto(comment));
-    }
-
-    @PutMapping("{id}")
-    public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody CommentDto commentDto) {
-        try {
-            Comment comment = this.commentService.update(Long.parseLong(id), this.commentMapper.toEntity(commentDto));
-
-            return ResponseEntity.ok().body(this.commentMapper.toDto(comment));
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<?> save(@PathVariable("id") String id) {
-        try {
-            Comment comment = this.commentService.getById(Long.valueOf(id));
-
-            if (comment == null) {
-                return ResponseEntity.notFound().build();
-            }
-
-            this.commentService.delete(Long.parseLong(id));
-            return ResponseEntity.ok().build();
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 }

@@ -2,8 +2,8 @@
   <app-header></app-header>
   <div class="container">
     <button routerLink="/add-post">Add new Article</button>
-    <div class="posts">
-      <app-post></app-post>
+    <div class="posts" *ngIf="posts">
+      <app-post class="post" *ngFor="let post of posts" [post]="post"></app-post>
     </div>
   </div>
 </div>

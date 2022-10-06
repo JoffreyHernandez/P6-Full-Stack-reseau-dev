@@ -35,7 +35,10 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany
+    @JoinTable(name = "SUBSCRIPTION",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "topic_id")})
     private List<Topic> topics;
 
     @CreatedDate

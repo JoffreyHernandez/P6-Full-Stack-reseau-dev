@@ -1,22 +1,26 @@
 <div class="add-topic">
   <app-header></app-header>
   <div class="container">
-    <div class="form">
+    <form class="form"  [formGroup]="form" (ngSubmit)="submit()">
       <div class="field">
         <label>Topic</label>
-        <input type="text"/>
+        <select *ngIf="topics" formControlName="topic_id">
+          <option *ngFor="let topic of topics" [ngValue]="topic.id">
+            {{ topic.name }}
+          </option>
+        </select>
       </div>
       <div class="field">
         <label>Title</label>
-        <input type="email"/>
+        <input type="text"  formControlName="title"/>
       </div>
-      <div class="field">
+      <div class="field textarea">
         <label>Content</label>
-        <textarea rows="8"> </textarea>
+        <textarea rows="8"  formControlName="content"> </textarea>
       </div>
-    </div>
     <div class="action">
-      <button routerLink="/home">Save</button>
+      <button type="submit" [disabled]="form.invalid">Save</button>
     </div>
+    </form>
   </div>
 </div>

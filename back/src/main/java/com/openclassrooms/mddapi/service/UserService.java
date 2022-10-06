@@ -15,24 +15,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User create(User user) {
+    public User save(User user) {
         return this.userRepository.save(user);
-    }
-
-    public void delete(Long id) {
-        this.userRepository.deleteById(id);
-    }
-
-    public List<User> findAll() {
-        return this.userRepository.findAll();
     }
 
     public User getById(Long id) {
         return this.userRepository.findById(id).orElse(null);
     }
 
-    public User update(Long id, User user) {
-        user.setId(id);
-        return this.userRepository.save(user);
+
+    public boolean existsByEmail(String email) {
+        return this.userRepository.existsByEmail(email);
     }
+
 }

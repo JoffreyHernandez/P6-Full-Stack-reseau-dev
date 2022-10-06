@@ -1,0 +1,24 @@
+<div class="post-detail">
+  <app-header></app-header>
+  <div class="detail" *ngIf="post">
+    <div class="info">
+      <div>Topic: <span *ngIf="topic">{{topic.name}}</span></div>
+      <div>Title: {{post.title}}</div>
+      <div>Date: {{post.createdAt | date}}</div>
+      <div>Author: <span *ngIf="user">{{ user.username}}</span></div>
+      <div>Content: {{ post.content}}</div>
+    </div>
+    <hr>
+    <div class="comments">
+      <p>Comments</p>
+      <div class="comment" *ngFor="let c of comments">{{ c.comment }}</div>
+      <div *ngIf="form">
+        <form class="comment-add" [formGroup]="form" (ngSubmit)="addComment()">
+          <p>comment:</p>
+          <input class="comment-input" type="text" formControlName="comment">
+          <button type="submit" [disabled]="form.invalid" class="add-comment">Add comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

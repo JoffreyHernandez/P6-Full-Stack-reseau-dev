@@ -1,8 +1,8 @@
-.field:last-child {
+.textarea {
     height: unset;
     margin-top: 13px;
 }
 
-.field:last-child label {
+.textarea label {
     align-self: start;
 }
